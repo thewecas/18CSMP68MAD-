@@ -10,7 +10,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 TextView op;
 String s1="",s2="",c="",res="";
-int flag=0,dflag=0,fflag=0,rflag=0;
+int flag=0,dflag=0,fflag=0,rflag=0,nflag=1;
 float result=0,f1,f2;
 
     @Override
@@ -48,67 +48,76 @@ float result=0,f1,f2;
            clear();
             rflag=0;
         }
-
         switch (view.getId()){
             case R.id.btn0:
                 if(flag==0)
                     s1+="0";
                 else
                     s2+="0";
+                nflag=0;
                 break;
             case R.id.btn1:
                 if(flag==0)
                     s1+="1";
                 else
                     s2+="1";
+                nflag=0;
                 break;
             case R.id.btn2:
                 if(flag==0)
                     s1+="2";
                 else
                     s2+="2";
+                nflag=0;
                 break;
             case R.id.btn3:
                 if(flag==0)
                     s1+="3";
                 else
                     s2+="3";
+                nflag=0;
                 break;
             case R.id.btn4:
                 if(flag==0)
                     s1+="4";
                 else
                     s2+="4";
+                nflag=0;
                 break;
             case R.id.btn5:
                 if(flag==0)
                     s1+="5";
                 else
                     s2+="5";
+                nflag=0;
                 break;
             case R.id.btn6:
                 if(flag==0)
                     s1+="6";
                 else
                     s2+="6";
+                nflag=0;
                 break;
             case R.id.btn7:
                 if(flag==0)
                     s1+="7";
                 else
                     s2+="7";
+                nflag=0;
                 break;
             case R.id.btn8:
                 if(flag==0)
                     s1+="8";
                 else
                     s2+="8";
+                nflag=0;
                 break;
             case R.id.btn9:
                 if(flag==0)
                     s1+="9";
                 else
                     s2+="9";
+                nflag=0;
                 break;
             case R.id.btnDot:
                 if(flag==0 && dflag==0) {
@@ -123,28 +132,28 @@ float result=0,f1,f2;
                 }
                 break;
             case R.id.btnAdd:
-                if(flag==0) {
+                if(flag==0 && nflag==0) {
                     c="+";
                     flag=1;
                     dflag=0;
                 }
                 break;
             case R.id.btnSub:
-                if(flag==0) {
+                if(flag==0 && nflag==0) {
                     c="-";
                     flag=1;
                     dflag=0;
                 }
                 break;
             case R.id.btnMul:
-                if(flag==0) {
+                if(flag==0 && nflag==0) {
                     c="*";
                     flag=1;
                     dflag=0;
                 }
                 break;
             case R.id.btnDiv:
-                if(flag==0) {
+                if(flag==0 && nflag==0) {
                     c="/";
                     flag=1;
                     dflag=0;
@@ -154,14 +163,16 @@ float result=0,f1,f2;
                 clear();
                 break;
             case R.id.btnEq:
-                res=" = "+calculate();
+                if(s1.equals("") || s2.equals("") || c.equals(""))
+                    clear();
+                else
+                    res=" = "+calculate();
                 rflag=1;
                 break;
     }
     op.setText(s1 + " " + c + " " + s2+res);
 }
     private String calculate() {
-
         try {
             f1=(float)Integer.parseInt(s1);
         }
@@ -209,9 +220,8 @@ float result=0,f1,f2;
         res="";
         flag=0;
         dflag=0;
+        fflag=0;
+        nflag=1;
     }
-
-
-
 
 }
